@@ -16,13 +16,13 @@ namespace ApexPortal.Login.Pages
 
         //Objects
         [FindsBy(How = How.Id, Using = "username")]
-        private IWebElement _userName;
+        private IWebElement _userName { get; set; }
 
         [FindsBy(How = How.Id, Using = "password")]
-        private IWebElement _passWord;
+        private IWebElement _passWord { get; set; }
 
         [FindsBy(How = How.Id, Using = "orgid")]
-        private IWebElement _cid;
+        private IWebElement _cid { get; set; }
 
         [FindsBy(How = How.Id, Using = "loginapi")]
         private IWebElement _loginButton;
@@ -34,41 +34,41 @@ namespace ApexPortal.Login.Pages
         //public IWebElement LoginButton { get => _loginButton; set => _loginButton = value; }
         //public IWebElement Cid { get => _cid; set => _cid = value; }
 
-        public string Username
-        {
-            get
-            {
-                return _userName.Text;
-            }
-            set
-            {
-                _userName.SendKeys(value);
-            }
-        }
+        //public string Username
+        //{
+        //    get
+        //    {
+        //        return _userName.Text;
+        //    }
+        //    set
+        //    {
+        //        _userName.SendKeys(value);
+        //    }
+        //}
 
-        public string Password
-        {
-            get
-            {
-                return _passWord.Text;
-            }
-            set
-            {
-                _passWord.SendKeys(value);
-            }
-        }
+        //public string Password
+        //{
+        //    get
+        //    {
+        //        return _passWord.Text;
+        //    }
+        //    set
+        //    {
+        //        _passWord.SendKeys(value);
+        //    }
+        //}
 
-        public string Cid
-        {
-            get
-            {
-                return _cid.Text;
-            }
-            set
-            {
-                _cid.SendKeys(value);
-            }
-        }
+        //public string Cid
+        //{
+        //    get
+        //    {
+        //        return _cid.Text;
+        //    }
+        //    set
+        //    {
+        //        _cid.SendKeys(value);
+        //    }
+        //}
 
         //Actions
         public LoginPage(IWebDriver driver) : base(driver)
@@ -88,11 +88,35 @@ namespace ApexPortal.Login.Pages
             return new LoginPage(driver);
         }
 
-        //create Home page
-        public HomePage Login()
+        public void EnterUser(string user)
+        {
+            _userName.SendKeys(user);
+            _userName.SendKeys(Keys.Tab);           
+            
+        }
+
+        public void EnterPass(string pass)
+        {
+            _passWord.SendKeys(pass);
+            _passWord.SendKeys(Keys.Tab);
+        }
+        public void EnterCid(string cid)
+        {
+            _cid.SendKeys(cid);
+        }
+
+        public HomePage ClickLogIn()
         {
             _loginButton.Click();
             return new HomePage(_driver);
         }
+
+
+        //create Home page
+        //public HomePage Login()
+        //{
+        //    _loginButton.Click();
+        //    return new HomePage(_driver);
+        //}
     }
 }

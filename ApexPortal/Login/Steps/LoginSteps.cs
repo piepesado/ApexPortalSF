@@ -22,27 +22,21 @@ namespace ApexPortal.Login.Steps
         }
         
         [Given(@"I enter (.*) as the username")]
-        public void GivenIEnterUsername(string userName)
+        public void GivenIEnterUsername(string user)
         {
-            _loginPage.Username = userName;
+            _loginPage.EnterUser(user);
         }
         
         [Given(@"I enter (.*) as the password")]
-        public void GivenIEnterThePassword(string passWord)
+        public void GivenIEnterThePassword(string pass)
         {
-            _loginPage.Password = passWord;
-        }
-        
-        [Given(@"I enter (.*) as the CID")]
-        public void GivenIEnterAsTheCID(string cid)
-        {
-            _loginPage.Cid = cid;
-        }
+            _loginPage.EnterPass(pass);
+        }       
         
         [When(@"I click on Login button")]
         public void WhenIClickOnLoginButton()
         {
-            _loginPage.Login();
+            _loginPage.ClickLogIn();
         }
         
         [Then(@"I should land on Apex hompage for Agency Agent role")]

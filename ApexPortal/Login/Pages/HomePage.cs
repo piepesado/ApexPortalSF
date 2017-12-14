@@ -28,8 +28,5 @@ namespace ApexPortal.Login.Pages
             _userDropDown.Click();
             return new HomePage(_driver);
         }
-
-
-
     }
 }
