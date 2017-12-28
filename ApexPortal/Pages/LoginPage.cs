@@ -7,12 +7,13 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using ApexPortal.Login.Feature;
+using System.Configuration;
 
 namespace ApexPortal.Login.Pages
 {
     public class LoginPage : BasePage
     {
-        private const string APEX_DEV_URL = "http://dev-coltui.travelnxt.com/login";
+        //private const string APEX_DEV_URL = "http://dev-coltui.travelnxt.com/login";
 
         //Objects
         [FindsBy(How = How.Id, Using = "username")]
@@ -82,7 +83,7 @@ namespace ApexPortal.Login.Pages
                 throw new ArgumentNullException(nameof(driver));
             }
 
-            driver.Navigate().GoToUrl(APEX_DEV_URL);
+            driver.Url = ConfigurationManager.AppSettings["DEV_URL"];
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(d => d.Title.Equals("APEX Portal::Login"));
             return new LoginPage(driver);

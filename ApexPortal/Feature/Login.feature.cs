@@ -10,14 +10,15 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace ApexPortal.Login.Feature
+namespace ApexPortal.Feature
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("Login", Description="\tAs a Agency Agent user,\r\n\tI would like to be able to login into APEX Portal", SourceFile="Login\\Feature\\Login.feature", SourceLine=0)]
+    [NUnit.Framework.TestFixtureAttribute()]
+    [NUnit.Framework.DescriptionAttribute("Login")]
     public partial class LoginFeature
     {
         
@@ -26,7 +27,7 @@ namespace ApexPortal.Login.Feature
 #line 1 "Login.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
+        [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -34,18 +35,19 @@ namespace ApexPortal.Login.Feature
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
+        [NUnit.Framework.OneTimeTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
+        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
+        [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -61,6 +63,10 @@ namespace ApexPortal.Login.Feature
             testRunner.CollectScenarioErrors();
         }
         
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Login as a Agency Agent")]
+        [NUnit.Framework.CategoryAttribute("login")]
+        [NUnit.Framework.TestCaseAttribute("jimmie.carr@travelleaders.com", "zaq1ZAQ!", "94326", null)]
         public virtual void LoginAsAAgencyAgent(string user, string pass, string cid, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -86,21 +92,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I should land on Apex hompage for Agency Agent role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Login as a Agency Agent, jimmie.carr@travelleaders.com", new string[] {
-                "login"}, SourceLine=15)]
-        public virtual void LoginAsAAgencyAgent_Jimmie_CarrTravelleaders_Com()
-        {
-#line 6
-this.LoginAsAAgencyAgent("jimmie.carr@travelleaders.com", "zaq1ZAQ!", "94326", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
-        {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }
