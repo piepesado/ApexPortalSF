@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
@@ -12,70 +8,63 @@ using System.Configuration;
 namespace ApexPortal.Login.Pages
 {
     public class LoginPage : BasePage
-    {
-        //private const string APEX_DEV_URL = "http://dev-coltui.travelnxt.com/login";
-
+    {      
         //Objects
         [FindsBy(How = How.Id, Using = "username")]
-        private IWebElement _userName { get; set; }
+        private IWebElement _userName;
 
         [FindsBy(How = How.Id, Using = "password")]
-        private IWebElement _passWord { get; set; }
+        private IWebElement _passWord;
 
         [FindsBy(How = How.Id, Using = "orgid")]
-        private IWebElement _cid { get; set; }
+        private IWebElement _cid;
 
-        [FindsBy(How = How.Id, Using = "loginapi")]
+        [FindsBy(How = How.ClassName, Using = "style-scope colt-login x-scope paper-button-1")]
         private IWebElement _loginButton;
 
         //Object Properties
+        public string Username
+        {
+            get
+            {
+                return _userName.Text;
+            }
+            set
+            {
+                _userName.SendKeys(value);
+            }
+        }
 
-        //public IWebElement UserName { get => _userName; set => _userName = value; }
-        //public IWebElement PassWord { get => _passWord; set => _passWord = value; }
-        //public IWebElement LoginButton { get => _loginButton; set => _loginButton = value; }
-        //public IWebElement Cid { get => _cid; set => _cid = value; }
+        public string Password
+        {
+            get
+            {
+                return _passWord.Text;
+            }
+            set
+            {
+                _passWord.SendKeys(value);
+            }
+        }
 
-        //public string Username
-        //{
-        //    get
-        //    {
-        //        return _userName.Text;
-        //    }
-        //    set
-        //    {
-        //        _userName.SendKeys(value);
-        //    }
-        //}
+        public string Cid
+        {
+            get
+            {
+                return _cid.Text;
+            }
+            set
+            {
+                _cid.SendKeys(value);
+            }
+        }
 
-        //public string Password
-        //{
-        //    get
-        //    {
-        //        return _passWord.Text;
-        //    }
-        //    set
-        //    {
-        //        _passWord.SendKeys(value);
-        //    }
-        //}
-
-        //public string Cid
-        //{
-        //    get
-        //    {
-        //        return _cid.Text;
-        //    }
-        //    set
-        //    {
-        //        _cid.SendKeys(value);
-        //    }
-        //}
-
-        //Actions
+        //Constructor
         public LoginPage(IWebDriver driver) : base(driver)
         {
         }
 
+        //Actions
         public static LoginPage NavigateTo(IWebDriver driver)
         {
             if(driver == null)
@@ -88,23 +77,23 @@ namespace ApexPortal.Login.Pages
             wait.Until(d => d.Title.Equals("APEX Portal::Login"));
             return new LoginPage(driver);
         }
-
-        public void EnterUser(string user)
+        
+        public void EnterUser(string value)
         {
-            _userName.SendKeys(user);
-            _userName.SendKeys(Keys.Tab);           
-            
+            _userName.SendKeys(value);
+            _userName.SendKeys(Keys.Tab);                    
         }
 
-        public void EnterPass(string pass)
+        public void EnterPass(string value)
         {
-            _passWord.SendKeys(pass);
+            _passWord.SendKeys(value);
             _passWord.SendKeys(Keys.Tab);
         }
-        public void EnterCid(string cid)
+        public void EnterCid(string value)
         {
-            _cid.SendKeys(cid);
+            _cid.SendKeys(value);
         }
+        
 
         public HomePage ClickLogIn()
         {
@@ -112,12 +101,14 @@ namespace ApexPortal.Login.Pages
             return new HomePage(_driver);
         }
 
-
+        /*
         //create Home page
-        //public HomePage Login()
-        //{
-        //    _loginButton.Click();
-        //    return new HomePage(_driver);
-        //}
+        public HomePage EnterCredentials(string username, string password)
+        {
+            this.Username = username;
+            this.Password = password;
+            HomePage hotelSearchPage = ClickLogIn();
+            return hotelSearchPage;
+        }*/
     }
 }
